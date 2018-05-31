@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login User</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="../../assets/imgs/login.png" width="128" height="128" />
+
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Alamat email anda" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
+      <p>Isikan email yang valid!</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Password anda" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+      <p>Isikan password lebih dari 8 karakter!</p>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!loginForm.valid">
+      Login
+    </button>
+  </form>
+
+  <button ion-button block clear (click)="goToSignup()">
+    Register User Baru
+  </button>
+
+  <button ion-button block clear (click)="goToResetPassword()">
+    Lupa Password
+  </button>
+
+  <ion-buttons end>
+    <button ion-button block color="danger" (click)="goToLoginGoogle()">
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Login with Google
+    </button>
+  </ion-buttons>
+</ion-content>
